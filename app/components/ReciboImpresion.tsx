@@ -12,7 +12,7 @@ export default function ReciboImpresion({ data, onClose }: Props) {
     // Obtener el contenido del recibo
     const reciboElement = document.querySelector('.recibo-impresion')
     if (!reciboElement) return
-    
+
     // Crear contenido HTML simple para imprimir
     const printContent = `
       <html>
@@ -38,13 +38,13 @@ export default function ReciboImpresion({ data, onClose }: Props) {
         </body>
       </html>
     `
-    
+
     // Crear ventana temporal para imprimir
     const printWindow = window.open('', '_blank')
     if (printWindow) {
       printWindow.document.write(printContent)
       printWindow.document.close()
-      
+
       printWindow.onload = () => {
         printWindow.print()
         printWindow.close()
@@ -68,21 +68,21 @@ export default function ReciboImpresion({ data, onClose }: Props) {
             ×
           </button>
         </div>
-        
+
         {/* Recibo único - se ve en pantalla y se imprime */}
         <div id={`recibo-impresion-${Date.now()}`} className="recibo-impresion recibo-termal bg-white p-4 font-mono text-xs border border-gray-300">
           <div className="text-center mb-3">
-            <img 
-              src="/interbank.png" 
-              alt="Interbank" 
+            <img
+              src="/interbank.png"
+              alt="Interbank"
               className="h-8 w-auto mx-auto"
             />
           </div>
-          
+
           <div className="text-xs mb-2 text-center">
             ------------------------------------
           </div>
-          
+
           <div className="text-xs mb-1">
             {data.sucursal} TLF 216-045998
           </div>
@@ -92,36 +92,36 @@ export default function ReciboImpresion({ data, onClose }: Props) {
           <div className="text-xs mb-2">
             NRO. OPE {data.numeroOperacion || '000001'}
           </div>
-          
+
           <div className="text-xs mb-1">
             TARJ: NRO****************{data.numeroCuenta?.slice(-2)}
           </div>
           <div className="text-xs mb-3">
             T.DOC: {data.tipoDocumento}
           </div>
-          
+
           <div className="text-xs mb-1">PRODUCTO: CUENTA CORRIENTE S/N</div>
           <div className="text-xs mb-1">CUENTA: {data.numeroCuenta}</div>
           <div className="text-xs mb-3">DOC: {data.numeroDocumento}</div>
-          
+
           <div className="text-xs font-bold mb-2">{data.tipoOperacion}</div>
-          
+
           <div className="text-xs mb-1">
             IMPORTE {data.tipoOperacion}          S/ {formatearMonto(data.monto)}
           </div>
           <div className="text-xs mb-3">
             MONEDA {data.tipoOperacion}    {data.moneda}
           </div>
-          
+
           <div className="text-xs mb-2 text-center">
             ------------------------------------
           </div>
-          
+
           <div className="text-xs mb-1">FORMA DE PAGO</div>
           <div className="text-xs mb-3">
             {data.formaPago}: S/ {formatearMonto(data.efectivo || data.monto)}
           </div>
-          
+
           {data.impuestoRetenido && data.impuestoRetenido > 0 && (
             <>
               <div className="text-xs mb-1">
@@ -132,16 +132,16 @@ export default function ReciboImpresion({ data, onClose }: Props) {
               </div>
             </>
           )}
-          
+
           <div className="text-xs text-center">
             ------------------------------------
           </div>
-          
+
           <div className="text-xs text-center mt-2">
             GRACIAS POR SU PREFERENCIA
           </div>
         </div>
-        
+
         <div className="flex gap-2 mt-4 no-print">
           <button
             onClick={handleImprimir}

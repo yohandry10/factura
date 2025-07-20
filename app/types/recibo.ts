@@ -22,6 +22,9 @@ export interface ReciboData {
   montoDeposito: number
   impuestoRetenido: number
   
+  // Saldo disponible
+  saldoDisponible: number
+  
   // Observaciones
   observaciones?: string
 }
