@@ -1,30 +1,31 @@
+// src/types/recibo.ts
 export interface ReciboData {
-  // Información del banco
-  sucursal: string
+  /* Metadatos */
   fecha: string
   hora: string
-  numeroOperacion?: string // Opcional porque se genera automáticamente
-  
-  // Información del cliente
+  numeroOperacion?: string  // Se genera al guardar
+
+  /* Información del cliente */
   numeroCuenta: string
   nombreCliente: string
   tipoDocumento: string
   numeroDocumento: string
-  
-  // Detalles de la operación
+
+  /* Detalles de la operación */
   tipoOperacion: string
   moneda: string
   monto: number
-  
-  // Información adicional
+
+  /* Información adicional */
   formaPago: string
-  efectivo: number
+  efectivo?: number
   montoDeposito: number
-  impuestoRetenido: number
-  
-  // Saldo disponible
-  saldoDisponible: number
-  
-  // Observaciones
+  impuestoRetenido?: number
+
+  /* Saldos */
+  saldoDisponible?: number
+
+  /* Observaciones */
   observaciones?: string
+  sucursal: string
 }
